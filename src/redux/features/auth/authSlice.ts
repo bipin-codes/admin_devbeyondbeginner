@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { RootState } from '../store';
+import { RootState } from '../../store';
 
-interface IAuthSlice {
+export interface IAuthSlice {
   isAuthenticated: boolean;
 }
 const initialState: IAuthSlice = {
