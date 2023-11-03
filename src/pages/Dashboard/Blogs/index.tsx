@@ -1,16 +1,21 @@
-import Select from 'react-select';
+import CategoriesSelector from 'common/CategoriesSelector';
+import Portal from 'common/Portal';
+import { useState } from 'react';
 
-const selectOptions = [
-    { value: 'nodejs', label: 'nodejs' },
-    { value: 'express', label: 'express' },
-    { value: 'serverless framework', label: 'serverless' },
-    { value: 'react', label: 'react' },
-    { value: 'cloud', label: 'cloud' },
-    { value: 'frontend', label: 'frontend' },
-];
 const Blogs = () => {
+    const [isOpen, setIsOpen] = useState(false);
+
+    const createBlogHandler = () => {
+        setIsOpen(!isOpen);
+    };
+
+    const onSave = () => {};
+    const onClose = () => {
+        setIsOpen(false);
+    };
+
     return (
-        <div className="flex-col between p-5 justify-between space-y-5">
+        <div className="flex-col between p-5 justify-between space-y-5 relative">
             <div className="flex items-stretch flex-1 ">
                 <input
                     type="text"
@@ -22,41 +27,16 @@ const Blogs = () => {
                 </div>
             </div>
 
-            <Select
-                placeholder="Select blog categories to filter..."
-                closeMenuOnSelect={false}
-                isMulti
-                options={selectOptions}
-                className="outline-none"
-                styles={{
-                    control: (baseStyles) => ({
-                        ...baseStyles,
-                        border: '1px solid grey',
-                        outline: 'none',
-                        ':active': {
-                            outline: 'none',
-                            border: 'none',
-                            boxShadow: 'none',
-                        },
-                    }),
+            <CategoriesSelector placeholderMessage="Select blog categories to filter..." allowMultipleValues={true} />
 
-                    multiValueLabel: (baseStyles) => ({
-                        ...baseStyles,
-                        width: '10rem',
-                        fontSize: '1.2rem',
-                    }),
-                    placeholder: (baseStyles) => ({
-                        ...baseStyles,
-                        fontSize: '1.2rem',
-                    }),
-                }}
-            />
-
-            <button className="text-xl self-end px-6 py-4 bg-blue-400 border-2 border-blue-500 font-bold text-blue-800 rounded-lg flex-1 animated-button">
+            <button
+                onClick={createBlogHandler}
+                className="text-xl self-end px-6 py-4 bg-blue-400 border-2 border-blue-500 font-bold text-blue-800 rounded-lg flex-1 animated-button"
+            >
                 Create blog
             </button>
+            <Portal isOpen={isOpen} onSave={onSave} onClose={onClose} />
         </div>
     );
 };
-
 export default Blogs;

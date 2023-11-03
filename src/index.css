@@ -12,3 +12,7 @@
 .animated-button {
     @apply hover:scale-105 duration-200 hover:shadow-md hover:shadow-gray-400;
 }
+
+.tox-menubar button {
+    width: 5rem !important;
+}
