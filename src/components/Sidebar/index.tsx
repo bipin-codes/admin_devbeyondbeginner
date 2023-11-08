@@ -3,8 +3,8 @@ import NavItem, { LinkDetail } from './NavItem';
 const home: LinkDetail = { label: 'home', to: '/dashboard', icon: 'Home' };
 const links: Array<LinkDetail> = [
     { label: 'blogs', to: 'blogs', icon: 'Blog' },
-    { label: 'comments', to: 'comments', icon: 'Comment' },
     { label: 'categories', to: 'categories', icon: 'Categories' },
+    { label: 'comments', to: 'comments', icon: 'Comment' },
 ];
 
 const Sidebar = () => {
