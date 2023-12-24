@@ -1,21 +1,38 @@
-import Select from 'react-select';
+import { useAppSelector } from 'app/hooks';
+import { selectCategoriesByNames } from 'app/slices/categories';
+import Select, { MultiValue, SingleValue } from 'react-select';
+export type Option = { value: string; label: string };
 
-const CategoriesSelector: React.FC<{ placeholderMessage: string; allowMultipleValues: boolean }> = ({ placeholderMessage, allowMultipleValues }) => {
-    const selectOptions = [
-        { value: 'nodejs', label: 'nodejs' },
-        { value: 'express', label: 'express' },
-        { value: 'serverless framework', label: 'serverless' },
-        { value: 'react', label: 'react' },
-        { value: 'cloud', label: 'cloud' },
-        { value: 'frontend', label: 'frontend' },
-    ];
+interface ICategoriesSelectorProps {
+    placeholderMessage: string;
+    allowMultipleValues: boolean;
+    values?: Array<Option>;
+    onValueSelected: (value: Array<Option>) => void;
+}
+
+const CategoriesSelector: React.FC<ICategoriesSelectorProps> = ({
+    placeholderMessage,
+    allowMultipleValues,
+    onValueSelected,
+    values,
+}) => {
+    const categories = useAppSelector(selectCategoriesByNames);
+
+    const onChangeHandler = (
+        option: SingleValue<Option> | MultiValue<Option>
+    ) => {
+        onValueSelected(Array.isArray(option) ? option : [option]);
+    };
+
     return (
         <Select
+            value={values}
+            onChange={onChangeHandler}
             placeholder={placeholderMessage}
             menuPlacement="auto"
             closeMenuOnSelect={!allowMultipleValues} //disable when multiple values can be selected...
             isMulti={allowMultipleValues}
-            options={selectOptions}
+            options={categories}
             className="outline-none"
             styles={{
                 control: (baseStyles) => ({

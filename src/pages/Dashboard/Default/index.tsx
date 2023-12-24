@@ -1,8 +1,9 @@
 // ROUTE THAT SHOWS UP WHEN NO CHILD ROUTE IS SELECTED
 
-import Card, { CardDetails } from 'common/Card';
+import Card from 'common/Card';
+import { ICardDetail } from 'common/Card/types';
 
-const cardDetailsDummy: Array<CardDetails> = [
+const cardDetailsDummy: Array<ICardDetail> = [
     {
         title: 'MOST RECENT POST',
         description: '📝 How do setup mac for development',
@@ -49,7 +50,11 @@ const Default = () => {
             <div className="flex-1 space-y-20 self-start">
                 <p className="text-2xl text-gray-800 font-medium">
                     Some stats about
-                    <span className="text-blue-400 text-3xl"> devbeyondbeginner</span>.
+                    <span className="text-blue-400 text-3xl">
+                        {' '}
+                        devbeyondbeginner
+                    </span>
+                    .
                 </p>
                 <div className="flex flex-wrap justify-around items-center gap-20">
                     {cardDetailsDummy.map((detail) => (

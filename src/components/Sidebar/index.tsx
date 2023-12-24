@@ -1,4 +1,5 @@
-import NavItem, { LinkDetail } from './NavItem';
+import NavItem from './NavItem';
+import { LinkDetail } from './NavItem/types';
 
 const home: LinkDetail = { label: 'home', to: '/dashboard', icon: 'Home' };
 const links: Array<LinkDetail> = [
@@ -12,9 +13,14 @@ const Sidebar = () => {
         <nav className="flex flex-col rounded-lg max-w-sm bg-gray-800 text-gray-100 p-10">
             <NavItem item={home} hoverEffect={false} icon="Home" key={'home'} />
 
-            <div className="flex-1 rounded-lg p-10">
+            <div className="flex-1 rounded-lg">
                 {links.map((link, index) => (
-                    <NavItem item={link} hoverEffect={true} key={index} icon={link.icon} />
+                    <NavItem
+                        item={link}
+                        hoverEffect={true}
+                        key={index}
+                        icon={link.icon}
+                    />
                 ))}
             </div>
         </nav>
