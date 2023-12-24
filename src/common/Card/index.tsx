@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ICardDetailProps } from './types';
+import { ICardDetail } from './types';
 
 const withLink = (component: JSX.Element, link?: string) => {
     if (link) {
@@ -12,12 +12,7 @@ const withLink = (component: JSX.Element, link?: string) => {
     return component;
 };
 
-const Card: React.FC<ICardDetailProps> = ({
-    title,
-    description,
-    value,
-    link,
-}) => {
+const Card: React.FC<ICardDetail> = ({ title, description, value, link }) => {
     return (
         <div className="group w-3/12 md:8/12">
             <div className="group-hover:scale-105 group-hover:shadow-xl group-hover:shadow-gray-700 duration-200">
